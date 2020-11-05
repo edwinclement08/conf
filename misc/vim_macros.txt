@@ -1,0 +1,37 @@
+--------------------------------------------------
+Change the following table name
+--------------------------------------------------
+@@@1TABLE_NAME=users
+
+# get the table config
+SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '';
+
+# delete surrounding bars and add commas in sql single column
+02x$2xbea,j0
+--------------------------------------------------
+#$#
+
+SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'user_details';
+
+
+
+
+==================================================
+# creating the sql
+gg/@@@1f=ly$/#jf'pyy/#$#opgg/@@@1/#jf'ldt'/@@@1
+# remove the top and bottom bars
+gg3dd/+--ddggO
+# remove the | at the beginning and at the end, add a comma
+02x$2xbea, d$kJj0
+# add the csv to docker container
+docker cp ./<filename.csv> <container_id>:/
+# run mysql Client
+mysql -u root
+# load the csv
+  LOAD DATA LOCAL INFILE
+ ## 'country.csv'
+  INTO TABLE
+ ## country
+  FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS
+
+

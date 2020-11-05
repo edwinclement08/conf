@@ -1,0 +1,102 @@
+# requirements(prereq apps to be installed)
+# 1. diff-so-fancy
+# 2. gh (github cli)
+# 3. zsh
+
+export CONF_PATH="$HOME/conf"
+
+source "${CONF_PATH}/install-`uname`"
+
+echo "\n-----------------------------------------------------"
+echo "-----------------Common Config-----------------------"
+echo "-----------------------------------------------------"
+
+# git config
+echo "\n# Setting up Common Git settings"
+git config --global color.ui true
+
+git config --global color.diff-highlight.oldNormal    "red bold"
+git config --global color.diff-highlight.oldHighlight "red bold 52"
+git config --global color.diff-highlight.newNormal    "green bold"
+git config --global color.diff-highlight.newHighlight "green bold 22"
+
+git config --global color.diff.meta       "11"
+git config --global color.diff.frag       "magenta bold"
+git config --global color.diff.commit     "yellow bold"
+git config --global color.diff.old        "red bold"
+git config --global color.diff.new        "green bold"
+git config --global color.diff.whitespace "red reverse"
+
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+
+
+# gh auth login
+if  gh auth status 2>&1 | grep 'You are not logged into any GitHub hosts. Run gh auth login to authenticate.' > /dev/null; then
+   echo "\nAuthenticating with Github CLI(gh)."
+   gh auth login -w -h github.com
+else
+   echo "\nAlready Logged in with Github CLI(gh)."
+fi
+
+
+# Install Iredis
+echo "\nInstalling iredis"
+pip3 install iredis -q
+
+# create bin paths
+BIN_PATH="$HOME/bin"
+echo "\nEnsure ~/bin exists"
+[ ! -d "$BIN_PATH" ] && mkdir "$BIN_PATH"
+
+TASK="(Re)Symlinking common scripts to ${BIN_PATH}/common"
+rm "${BIN_PATH}/common"
+ln -s "${CONF_PATH}/bin/" "${BIN_PATH}/common"
+echo "\n$TASK"
+
+OH_MY_ZSH_INSTALL_DIR="$HOME/.oh-my-zsh"
+TASK="Oh My Zsh in $OH_MY_ZSH_INSTALL_DIR"
+if [ -d "$OH_MY_ZSH_INSTALL_DIR" ]
+then
+    echo "\nEnsured oh-my-zsh exists at $OH_MY_ZSH_INSTALL_DIR"
+else
+    echo "\nInstalling $TASK"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+TASK="Adding oh-my-zsh plugin"
+ZSH_PLUGINS=(zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
+ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
+echo "\n${TASK}s (${ZSH_PLUGINS[*]})"
+for plugin in ${ZSH_PLUGINS[@]}; do
+    if [ ! -d "$ZSH_CUSTOM/plugins/${plugin}" ]; then
+        echo "\t${TASK}: (${plugin})"
+        git clone https://github.com/zsh-users/${plugin}.git $ZSH_CUSTOM/plugins/$plugin
+    else
+        echo "\t${plugin} is already installed."
+    fi
+done
+if [ ! -d "$ZSH_CUSTOM/themes/spaceship-prompt" ]; then
+    echo "\nAdding oh-my-zsh theme spaceship-prompt"
+    git clone --quiet https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
+    ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" 
+else
+    echo "\nspaceship-prompt is already installed."
+fi
+
+
+
+TASK="(Re)Symlinking Config file"
+CONFIG_FILES=(.zshrc .tmux.conf .irbrc)
+echo "\n${TASK}s (${CONFIG_FILES[*]})"
+for cfg in ${CONFIG_FILES[@]}; do
+    echo "\t[LINKING] ${cfg}"
+    NEW_PATH="$HOME/${cfg}"
+    [ -f "$NEW_PATH" ] && rm "$NEW_PATH"
+    ln -s "${CONF_PATH}/${cfg}" "$NEW_PATH"
+done
+
+
+echo '\n\n-----------------------------------------------------------------------'
+echo 'INSTALL NOTES'
+echo '1. Remember to use the Hack Nerd font for powerline in the terminals'
+echo '\n-----------------------------------------------------------------------\n'

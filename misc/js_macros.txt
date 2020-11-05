@@ -1,0 +1,4 @@
+$("tr").filter(function() {
+	if  ($(this).text().indexOf("Opportunity") !== -1) return false
+    return $(this).text().indexOf("0060I00000ePCYWQA4") == -1;
+}).remove();
