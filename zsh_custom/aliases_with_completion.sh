@@ -8,7 +8,7 @@ if [ "$1" != "" ]
 then
   docker exec -it "$1" /bin/bash || docker exec -it "$1" /bin/sh
 else
-  echo "Give the name/id of the container"
+  echo -e "Give the name/id of the container"
 fi
 }
 
@@ -21,7 +21,7 @@ alias t.ls='tmux ls'
   then
     tmux attach -t "$1" || tmux new -s "$1"
   else
-    echo "Give the name of the session as a parameter"
+    echo -e "Give the name of the session as a parameter"
   fi
 }
 _t.c() {
@@ -37,7 +37,7 @@ function di() {
 	then
 		docker exec -it "$1" /bin/bash || docker exec -it "$1" /bin/sh
 	else
-		echo "Give the name/id of the container"
+		echo -e "Give the name/id of the container"
 	fi
 }
 

@@ -1,7 +1,7 @@
-echo 'Enable repeat key on hold'
+echo -e 'Enable repeat key on hold'
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-echo 'Increase key repeat rates'
+echo -e 'Increase key repeat rates'
 # normal minimum is 15 (225 ms)
 
 defaults write -g InitialKeyRepeat -int 14
@@ -11,10 +11,10 @@ defaults write -g KeyRepeat -int 2
 which -s brew
 if [[ $? != 0 ]] ; then
     # Install Homebrew
-    echo "Installing Homebrew"
+    echo -e "Installing Homebrew"
     /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" 
 else
-    echo "Homebrew is already installed."
+    echo -e "Homebrew is already installed."
 fi
 
 brew bundle --file $CONF_PATH/Brewfile
