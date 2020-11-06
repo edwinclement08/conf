@@ -38,7 +38,7 @@ alias rake='noglob rake' # Needed for preventing Zsh from breaking rake argummen
 alias cat="bat"
 
 # lazy git
-alias lg='lg'
+alias lg="lazygit"
 
 # lazy docker
 alias lzd='lazydocker'
