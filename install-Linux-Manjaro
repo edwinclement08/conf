@@ -1,1 +1,36 @@
 echo "Manjaro for the win"
+
+which yay
+if [[ $? != 0 ]] ; then
+    # Install yay
+    echo "Installing yay"
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd ..
+    rm -rf yay
+else
+    echo "yay is already installed."
+fi
+
+yay -S --norebuild --needed --batchinstall --noredownload --nocleanmenu --nodiffmenu --noeditmenu \
+    bat \
+    diff-so-fancy \
+    fzf \
+    htop \
+    grv \
+    lazydocker \
+    lazygit \
+    gnupg \
+    docker-compose \
+    fnm-bin \
+    github-cli \
+    mycli \
+    neovim \
+    pnpm \
+    python \
+    the_silver_searcher \
+    tmux \
+    tmuxinator \
+    tree \
+    docker 
