@@ -1,0 +1,9 @@
+
+if lsb_release -d | grep -q "Manjaro Linux"; then
+    echo "Installing Manjaro-Specific Code"
+    source "${CONF_PATH}/install-Linux-Manjaro"
+fi
+if lsb_release -d | grep -q "Ubuntu"; then
+    echo "Installing Ubuntu-Specific Code"
+    source "${CONF_PATH}/install-Linux-Ubuntu"
+fi

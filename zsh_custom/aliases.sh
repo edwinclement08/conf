@@ -14,8 +14,9 @@ alias g.d='git diff --cached '
 alias g.p='git push'
 alias g.ac="git add . -A && git commit -m"
 
-alias v=vim
-alias v.t="vim ~/.tmux.conf"
+alias v=nvim
+alias vim=nvim
+alias v.t="nvim ~/.tmux.conf"
 alias tt=tmuxinator
 
 
@@ -39,6 +40,7 @@ alias cat="bat"
 
 # lazy git
 alias lg="lazygit"
+alias ll="l -hl -s extension"
 
 # lazy docker
 alias lzd='lazydocker'
@@ -52,7 +54,7 @@ alias p="fzf --preview 'bat --color \"always\" {}'"
 # redis cli
 alias redis-cli='iredis'
 
-# notify
+# notify on MAC OS
 function notify() {
   osascript -e "display notification \"$2\" with title \"$1\" sound name \"Glass\""
 }

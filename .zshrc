@@ -4,7 +4,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 export FZF_DEFAULT_COMMAND='ag -l'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export EDITOR=nvim
+export EDITOR=vim
 
 ZSH_THEME="spaceship"
 
@@ -37,9 +37,6 @@ ZSH_HIGHLIGHT_PATTERNS+=('rm -rf*' 'fg=white,bold,bg=red')
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
-# CUSTOM STUFF
-alias ll="l -hl -s extension"
-
 zstyle ':completion:*:*:make:*' tag-order 'targets'
 
 # Zsh Specific configurations
@@ -60,7 +57,8 @@ for file in $CONF_PATH/zsh_custom/*; do
    source "$file"
 done
 
+source "${CONF_PATH}/.zshrc-`uname`"
+export PATH="$HOME/bin/`uname`:$PATH"
+
 # Initialize the autocompletion
 autoload -Uz compinit && compinit -i
-
-source "${CONF_PATH}/.zshrc-`uname`"
