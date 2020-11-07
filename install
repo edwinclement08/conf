@@ -38,7 +38,6 @@ else
    echo -e "\nAlready Logged in with Github CLI(gh)."
 fi
 
-
 # Install Iredis
 echo -e "\nInstalling iredis"
 pip3 install iredis -q
@@ -52,6 +51,14 @@ TASK="(Re)Symlinking common scripts to ${BIN_PATH}/common"
 rm "${BIN_PATH}/common"
 ln -s "${CONF_PATH}/bin/" "${BIN_PATH}/common"
 echo -e "\n$TASK"
+
+# downloading and symlinking inlets helper script
+SCRIPT_LOCATION="$BIN_PATH/start-tunnel"
+if [ ! -f "$SCRIPT_LOCATION" ] 
+then
+    wget https://raw.githubusercontent.com/edwinclement08/inlets/2.7.10/start-tunnel -P $BIN_PATH 
+    chmod a+x $SCRIPT_LOCATION
+fi
 
 OH_MY_ZSH_INSTALL_DIR="$HOME/.oh-my-zsh"
 TASK="Oh My Zsh in $OH_MY_ZSH_INSTALL_DIR"

@@ -33,4 +33,5 @@ yay -S --norebuild --needed --batchinstall --noredownload --nocleanmenu --nodiff
     tmux \
     tmuxinator \
     tree \
-    docker 
+    docker \
+    inlets
