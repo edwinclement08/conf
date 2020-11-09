@@ -7,6 +7,11 @@ export CONF_PATH="$HOME/conf"
 
 source "${CONF_PATH}/install-`uname`"
 
+# Figure out this one
+echo "Figure out installation of go, maybe use Nix, and then proceed"
+exit
+GO111MODULE=on go get github.com/mikefarah/yq/v3
+
 echo -e "\n-----------------------------------------------------"
 echo -e "-----------------Common Config-----------------------"
 echo -e "-----------------------------------------------------"
