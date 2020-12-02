@@ -1,1 +1,82 @@
 echo -e "Ubuntu for the win"
+
+# Lazygit
+sudo add-apt-repository -y ppa:lazygit-team/release > /dev/null 2>&1
+
+# gh github cli
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+sudo apt-add-repository https://cli.github.com/packages  > /dev/null 2>&1
+
+sudo DEBIAN_FRONTEND=noninteractive apt-get update -qq
+sudo DEBIAN_FRONTEND=noninteractive apt install -qq -y \
+    bat \
+    curl \
+    fzf \
+    htop \
+    lazygit \
+    gnupg \
+    docker-compose \
+    gh \
+    mycli \
+    neovim \
+    python \
+    silversearcher-ag \
+    tmux \
+    tmuxinator \
+    tree \
+    docker \
+    nodejs \ 
+    zsh
+
+mkdir -p $HOME/bin
+export PATH=$HOME/bin:$PATH
+
+echo -n "grv:"
+which grv
+if [[ $? != 0 ]] ; then
+    wget -O $HOME/bin/grv https://github.com/rgburke/grv/releases/download/v0.3.2/grv_v0.3.2_linux64
+    chmod +x $HOME/bin/grv
+    echo "Done"
+else
+    echo -e "Already installed"
+fi
+
+echo -n "LazyDocker:"
+which lazydocker
+if [[ $? != 0 ]] ; then
+    curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+    echo "Done"
+else
+    echo -e "Already installed"
+fi
+
+export PATH=$HOME/.fnm:$PATH
+echo -n "Fnm:"
+which fnm
+if [[ $? != 0 ]] ; then
+    curl -fsSL https://fnm.vercel.app/install | bash
+    echo "Done"
+else
+    echo -e "Already installed"
+fi
+
+echo -n "Pnpm:"
+which pnpm
+if [[ $? != 0 ]] ; then
+    curl -L https://raw.githubusercontent.com/pnpm/self-installer/master/install.js | node
+    echo "Done"
+else
+    echo -e "Already installed"
+fi
+
+
+echo -n "Inlets: "
+which inlets
+if [[ $? != 0 ]] ; then
+    curl -sLS https://get.inlets.dev | sh
+    cp inlets $HOME/bin/inlets
+    echo "Done"
+else
+    echo -e "Already installed"
+fi
+
