@@ -53,6 +53,7 @@ set -o vi
 
 
 # import all files in the zsh custom config path
+source "$CONF_PATH/zsh_custom/path_modifications.sh"
 for file in $CONF_PATH/zsh_custom/*; do
    source "$file"
 done
