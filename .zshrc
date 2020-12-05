@@ -51,6 +51,8 @@ set -o vi
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# import OS specific stuff
+source "${CONF_PATH}/.zshrc-`uname`"
 
 # import all files in the zsh custom config path
 source "$CONF_PATH/zsh_custom/path_modifications.sh"
@@ -58,7 +60,6 @@ for file in $CONF_PATH/zsh_custom/*; do
    source "$file"
 done
 
-source "${CONF_PATH}/.zshrc-`uname`"
 export PATH="$HOME/bin/`uname`:$PATH"
 
 # Initialize the autocompletion
