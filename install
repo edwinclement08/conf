@@ -116,4 +116,5 @@ done
 echo -e '\n\n-----------------------------------------------------------------------'
 echo -e 'INSTALL NOTES'
 echo -e '1. Remember to use the Hack Nerd font for powerline in the terminals'
+echo -e '2. Remeber to install all tmux plugins(TMUX plugin manager by Prefix-I'
 echo -e '\n-----------------------------------------------------------------------\n'
