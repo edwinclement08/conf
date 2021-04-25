@@ -12,6 +12,7 @@ alias g.l='git log'
 alias g.a='git add . -A'
 alias g.d='git diff --cached '
 alias g.p='git push'
+alias g.pp='git push origin master --set-upstream'
 alias g.ac="git add . -A && git commit -m"
 
 alias v=nvim
