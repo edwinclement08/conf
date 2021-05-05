@@ -116,7 +116,8 @@ export GOPATH=$HOME/coding/go
 # fd, ripgrep, gitea-tea
 
 
-source ~/.bstack-keys.zsh
-source ~/.personal-keys.zsh
+[[ -e ~/.bstack-keys.zsh ]] && source ~/.bstack-keys.zsh
+[[ -e ~/.personal-keys.zsh ]] && source ~/.personal-keys.zsh
+
 # Initialize the autocompletion
 # autoload -Uz compinit && compinit -i
