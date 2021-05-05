@@ -36,8 +36,7 @@ function cloneBstack() {
   then 
     echo 'Give Browerstack Repo name';
   else
-    echo "browserstack/$1"
-    gh repo clone "browerstack/$1"
+    gh repo clone "browserstack/$1"
   fi
 }
 
@@ -46,7 +45,7 @@ function cloneBstack() {
 #}
 _fzf_complete_cloneBstack() {
   _fzf_complete --height 80% --preview 'cache-output gh repo view browserstack/{} | glow - -s dark' --preview-window=65% --reverse --prompt="doge> " -- "$1" < <(
-  cache-output gh repo list browserstack -L 1000 | awk '{ print $1 }' | awk -F"\/" '{ print $2}'
+  cache-output gh repo list browserstack -L 1000 | awk '{ print $1 }' | awk -F"/" '{ print $2}'
   )
 }
 # compdef _cloneBstack cloneBstack
