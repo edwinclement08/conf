@@ -17,4 +17,9 @@ paru -S --norebuild --needed --batchinstall --redownload=no   \
     tmux \
     tree \
     docker \
-    inlets
+    inlets \
+    asdf-vm \
+    fd \
+    ripgrep-all-bin \
+    gitea-tea
+

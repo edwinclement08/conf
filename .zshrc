@@ -113,8 +113,17 @@ export GOPATH=$HOME/coding/go
 
 # TODO change this multi-OS
 . /opt/asdf-vm/asdf.sh
-# fd, ripgrep, gitea-tea
 
+# TODO install these for all oses
+#  asdf 		Garuda ✓ 
+#  ripgrep-all-bin 	Garuda ✓ 
+#  fd			Garuda ✓ 
+#  gitea-tea		Garuda ✓ 
+#  paru			Garuda ✓ 
+#  git-delta-bin	Garuda ✓  # required for lazygit
+  
+# Replace yay with paru if installed
+[ ! -x /usr/bin/yay ] && [ -x /usr/bin/paru ] && alias yay='paru'
 
 [[ -e ~/.bstack-keys.zsh ]] && source ~/.bstack-keys.zsh
 [[ -e ~/.personal-keys.zsh ]] && source ~/.personal-keys.zsh
