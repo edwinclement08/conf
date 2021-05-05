@@ -7,3 +7,7 @@ if lsb_release -d | grep -q "Ubuntu"; then
     echo -e "Installing Ubuntu-Specific Code"
     source "${CONF_PATH}/install-Linux-Ubuntu"
 fi
+if lsb_release -d | grep -q "Garuda Linux"; then
+    echo -e "Installing Garuda-Specific Code"
+    source "${CONF_PATH}/install-Linux-Garuda"
+fi

@@ -5,6 +5,8 @@
 
 export CONF_PATH="$HOME/conf"
 
+source "${CONF_PATH}/feature_flag.sh"
+
 source "${CONF_PATH}/install-`uname`"
 
 # Figure out this one
@@ -34,6 +36,8 @@ git config --global color.diff.whitespace "red reverse"
 
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 
+git config --global user.name "Edwin Clement"
+git config --global user.email "edwinclement08@gmail.com"
 
 # gh auth login
 if  gh auth status 2>&1 | grep 'You are not logged into any GitHub hosts. Run gh auth login to authenticate.' > /dev/null; then

@@ -1,0 +1,19 @@
+echo -e "Garuda will fly"
+
+yay -S --norebuild --needed --batchinstall --noredownload --nocleanmenu --nodiffmenu --noeditmenu \
+    bat \
+    diff-so-fancy \
+    grv \
+    lazydocker \
+    lazygit \
+    docker-compose \
+    fnm-bin \
+    github-cli \
+    mycli \
+    neovim \
+    pnpm \
+    the_silver_searcher \
+    tmux \
+    tree \
+    docker \
+    inlets
