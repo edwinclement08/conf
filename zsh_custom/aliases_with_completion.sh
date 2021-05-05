@@ -4,12 +4,12 @@ function _d.i() {
   return 0
 }
 function d.i()  {
-if [ "$1" != "" ]
-then
-  docker exec -it "$1" /bin/bash || docker exec -it "$1" /bin/sh
-else
-  echo -e "Give the name/id of the container"
-fi
+  if [ "$1" != "" ]
+  then
+    docker exec -it "$1" /bin/bash || docker exec -it "$1" /bin/sh
+  else
+    echo -e "Give the name/id of the container"
+  fi
 }
 
 compdef _d.i d.i
@@ -31,15 +31,25 @@ _t.c() {
 compdef _t.c t.c
 alias t.t='tmux source-file ~/.tmux.conf'
 
-
-function di() {
-	if [ "$1" != "" ]
-	then
-		docker exec -it "$1" /bin/bash || docker exec -it "$1" /bin/sh
-	else
-		echo -e "Give the name/id of the container"
-	fi
+function cloneBstack() { 
+  if [ "$#" != "1" ] 
+  then 
+    echo 'Give Browerstack Repo name';
+  else
+    gh repo clone "browserstack/$1"
+  fi
 }
+
+#_cloneBstack() {
+#  cache-output gh repo list browserstack  | fzf --reverse --prompt="repo> " 
+#}
+_fzf_complete_cloneBstack() {
+  _fzf_complete --height 80% --preview 'cache-output gh repo view browserstack/{} | glow - -s dark' --preview-window=65% --reverse --prompt="doge> " -- "$1" < <(
+  cache-output gh repo list browserstack -L 1000 | awk '{ print $1 }' | awk -F"/" '{ print $2}'
+  )
+}
+# compdef _cloneBstack cloneBstack
+
 
 if [[ -r ~/.ssh/config ]]; then
   h=($h ${${${(@M)${(f)"$(cat ~/.ssh/config)"}:#Host *}#Host }:#*[*?]*})
@@ -51,3 +61,12 @@ if [[ $#h -gt 0 ]]; then
   zstyle ':completion:*:ssh:*' hosts $h
   zstyle ':completion:*:slogin:*' hosts $h
 fi
+
+faketty() {
+    script -qfc "$(printf "%q " "$@")" /dev/null
+}
+
+
+
+# faketty PAGER= gh repo list browserstack | fzf --ansi
+

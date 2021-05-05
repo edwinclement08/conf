@@ -16,6 +16,7 @@ SPACESHIP_TIME_SHOW=true
 SPACESHIP_DIR_TRUNC_REPO=false
 SPACESHIP_NODE_DEFAULT_VERSION=12.10.0
 
+
 plugins=(
   cp
   z
@@ -88,7 +89,10 @@ KEYTIMEOUT=1
 set -o vi
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f  /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+[ -f  /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+
+
 
 # import OS specific stuff
 source "${CONF_PATH}/.zshrc-`uname`"
@@ -105,6 +109,14 @@ done
 
 
 export PATH="$HOME/bin/`uname`:$PATH"
+export GOPATH=$HOME/coding/go
 
+# TODO change this multi-OS
+. /opt/asdf-vm/asdf.sh
+# fd, ripgrep, gitea-tea
+
+
+source ~/.bstack-keys.zsh
+source ~/.personal-keys.zsh
 # Initialize the autocompletion
 # autoload -Uz compinit && compinit -i
