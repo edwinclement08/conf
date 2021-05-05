@@ -49,7 +49,7 @@ fi
 
 # Install Iredis
 echo -e "\nInstalling iredis"
-pip3 install iredis -q
+pip install iredis -q
 
 # create bin paths
 BIN_PATH="$HOME/bin"
@@ -57,7 +57,7 @@ echo -e "\nEnsure ~/bin exists"
 [ ! -d "$BIN_PATH" ] && mkdir "$BIN_PATH"
 
 TASK="(Re)Symlinking common scripts to ${BIN_PATH}/common"
-rm "${BIN_PATH}/common"
+[ -d "$BIN_PATH/common" ] && rm "${BIN_PATH}/common"
 ln -s "${CONF_PATH}/bin/" "${BIN_PATH}/common"
 echo -e "\n$TASK"
 

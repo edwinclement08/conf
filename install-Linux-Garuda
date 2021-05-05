@@ -1,10 +1,11 @@
+#!/bin/sh
 echo -e "Garuda will fly"
 
-yay -S --norebuild --needed --batchinstall --noredownload --nocleanmenu --nodiffmenu --noeditmenu \
+paru -S --norebuild --needed --batchinstall --redownload=no   \
     bat \
     diff-so-fancy \
     grv \
-    lazydocker \
+    lazydocker-bin \
     lazygit \
     docker-compose \
     fnm-bin \
