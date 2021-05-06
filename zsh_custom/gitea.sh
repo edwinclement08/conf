@@ -6,8 +6,19 @@ function addToGiteaSelf() {
   if [ $result -eq 0 ]
   then
     echo "Is linked to github"
-    export orgNameOnGithub=`echo $gitOrigin | cut -d':'  -f2 | cut -d'/' -f1`
-    export repoNameOnGithub=`echo $gitOrigin | cut -d'/'  -f2 | cut -d'.' -f1`
+
+    if echo $gitOrigin | grep "gist.github.com"
+    then
+      echo "Its a Gist"
+      export orgNameOnGithub=`echo $gitOrigin | rev | cut -d'/'  -f2  | rev`
+      #export repoNameOnGithub=`echo $gitOrigin | rev | cut -d'/'  -f1  | rev`
+      export repoNameOnGithub=`gh gist view https://gist.github.com/seebk/bb94a7fd70d4cc454aaa | head -n 1 | tr '[:space:]' '_' |  tr -cd '[:alnum:]_'`
+
+    else
+      export orgNameOnGithub=`echo $gitOrigin | cut -d':'  -f2 | cut -d'/' -f1`
+      export repoNameOnGithub=`echo $gitOrigin | cut -d'/'  -f2 | cut -d'.' -f1`
+    fi
+
   elif [ $result -eq 128 ]
   then
     echo "Not a Repository."
@@ -29,6 +40,7 @@ function addToGiteaSelf() {
 
   # TODO remove this
   export orgNameOnGithub=edwinclement08
+  echo "Repo Name: $repoNameOnGithub"
 
   tea repo ls -o simple -f owner,name 2>/dev/null | grep "$orgNameOnGithub $repoNameOnGithub" > /dev/null
   if [ $? -eq 0 ]
@@ -41,7 +53,6 @@ function addToGiteaSelf() {
     # tea repo create --owner $orgNameOnGithub --name $repoNameOnGithub # TODO
     curdir=`pwd`
     cd /tmp
-    mkdir giteatea
     tea repo create --name $repoNameOnGithub
     if [ $? -ne 0 ]
     then
@@ -61,7 +72,7 @@ function addToGiteaSelf() {
     fi
     echo "$cloneURL added as <local> remote."
 
-    git push local --all
+    git push local --mirror
 
   fi
 

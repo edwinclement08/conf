@@ -127,6 +127,8 @@ export GOPATH=$HOME/coding/go
 
 [[ -e ~/.bstack-keys.zsh ]] && source ~/.bstack-keys.zsh
 [[ -e ~/.personal-keys.zsh ]] && source ~/.personal-keys.zsh
+export EDITOR=nvim
+
 
 # Initialize the autocompletion
 # autoload -Uz compinit && compinit -i
