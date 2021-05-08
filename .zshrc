@@ -124,6 +124,11 @@ export GOPATH=$HOME/coding/go
 #  gitea-tea		Garuda ✓ 
 #  paru			Garuda ✓ 
 #  git-delta-bin	Garuda ✓  # required for lazygit
+#  lf-bin	Garuda ✓  # required for lazygit
+#  gitmoji-cli	Garuda ✓  # required for lazygit
+#  asciinema Garuda ✓ 
+#  balena-etcher Garuda ✓ 
+#  expac Garuda ✓ 
   
 # Replace yay with paru if installed
 [ ! -x /usr/bin/yay ] && [ -x /usr/bin/paru ] && alias yay='paru'
