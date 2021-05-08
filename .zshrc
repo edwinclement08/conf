@@ -12,9 +12,11 @@ export EDITOR=vim
 
 ZSH_THEME="spaceship"
 
+SPACESHIP_EXIT_CODE_SHOW=true # for showing the exit code of last command if it was non-zero
 SPACESHIP_TIME_SHOW=true
 SPACESHIP_DIR_TRUNC_REPO=false
 SPACESHIP_NODE_DEFAULT_VERSION=12.10.0
+SPACESHIP_BATTERY_THRESHOLD=50 # show battery remaining if it is less than 50%
 
 
 plugins=(
@@ -29,6 +31,7 @@ plugins=(
   zsh-autosuggestions
 )
 
+export RPS1="%{$reset_color%}"
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -128,5 +131,6 @@ export GOPATH=$HOME/coding/go
 [[ -e ~/.bstack-keys.zsh ]] && source ~/.bstack-keys.zsh
 [[ -e ~/.personal-keys.zsh ]] && source ~/.personal-keys.zsh
 
-# Initialize the autocompletion
-# autoload -Uz compinit && compinit -i
+
+eval spaceship_vi_mode_enable # for allowing vi-mode changes to reflect on the shell prompt
+autoload -Uz compinit && compinit -i # Initialize the autocompletion

@@ -68,7 +68,7 @@ alias cat="bat"
 
 # lazy git
 alias lg="lazygit"
-alias ll="l -hl -s extension"
+alias ll="l -hl --sort=extension"
 
 # lazy docker
 alias lzd='lazydocker'
