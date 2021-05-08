@@ -1,6 +1,12 @@
 alias gpg=gpg2 
 alias mysql=mycli
 
+# common stuff
+alias h='head -n '
+alias t='tail -n '
+alias c=cat
+
+
 # zsh/bash
 alias mv='mv -v'
 
@@ -9,7 +15,7 @@ alias gg='grv'
 # Git aliases
 alias g.s='git status -s'
 alias g.ss='git status'
-alias g.c='git commit -m'
+alias g.c='gitmoji -c'
 alias g.l='git log'
 alias g.a='git add . -A'
 alias g.d='git diff --cached '
@@ -121,3 +127,4 @@ alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/p
 alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist" 
 
 
+alias get_installed_packages=" expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 10"
