@@ -130,6 +130,8 @@ export GOPATH=$HOME/coding/go
 
 [[ -e ~/.bstack-keys.zsh ]] && source ~/.bstack-keys.zsh
 [[ -e ~/.personal-keys.zsh ]] && source ~/.personal-keys.zsh
+export EDITOR=nvim
+
 
 
 eval spaceship_vi_mode_enable # for allowing vi-mode changes to reflect on the shell prompt
