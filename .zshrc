@@ -25,11 +25,11 @@ plugins=(
   z
   yarn
   zsh-syntax-highlighting
-  rake-fast
   vi-mode
   docker
   docker-compose
   zsh-autosuggestions
+  asdf
 )
 
 export RPS1="%{$reset_color%}"
@@ -114,7 +114,8 @@ export PATH="$HOME/bin/`uname`:$PATH"
 export GOPATH=$HOME/coding/go
 
 # TODO change this multi-OS
-. /opt/asdf-vm/asdf.sh
+#. /opt/asdf-vm/asdf.sh # garuda
+#. /usr/local/opt/asdf/asdf.sh # mac 
 
 # TODO install these for all oses
 #  asdf 		Garuda ✓ 
@@ -129,13 +130,19 @@ export GOPATH=$HOME/coding/go
 #  balena-etcher Garuda ✓ 
 #  expac Garuda ✓ 
   
+
 # Replace yay with paru if installed
 [ ! -x /usr/bin/yay ] && [ -x /usr/bin/paru ] && alias yay='paru'
 
 [[ -e ~/.bstack-keys.zsh ]] && source ~/.bstack-keys.zsh
 [[ -e ~/.personal-keys.zsh ]] && source ~/.personal-keys.zsh
+[[ -e ~/.bs_secrets ]] && source ~/.bs_secrets
 export EDITOR=nvim
 
+export HOMEBREW_AUTO_UPDATE_SECS="172800"
+
+
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 
 # autoload -Uz compinit 
 # if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
