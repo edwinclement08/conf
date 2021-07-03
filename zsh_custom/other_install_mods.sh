@@ -1,6 +1,7 @@
 # brew autocompletions
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  #FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  FPATH=/usr/local/share/zsh/site-functions:$FPATH
 fi
 
 
