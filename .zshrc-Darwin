@@ -1,3 +1,11 @@
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+
+export PATH=/usr/local/lib/python3.9/site-packages:$PATH
+export PATH=/usr/local/opt/arm-gcc-bin@8/bin:$PATH
+export PATH="/usr/local/opt/avr-gcc@8/bin:$PATH"
+
+
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
