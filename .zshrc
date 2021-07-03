@@ -1,3 +1,4 @@
+#zmodload zsh/zprof
 export CONF_PATH="$HOME/conf"
 export PATH="$HOME/bin:$HOME/bin/common:$PATH"
 export ZSH="$HOME/.oh-my-zsh"
@@ -45,25 +46,23 @@ ZSH_HIGHLIGHT_PATTERNS+=('rm -rf*' 'fg=white,bold,bg=red')
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 
-# Completion.
-autoload -Uz compinit
-compinit
-zstyle ':completion:*:*:make:*' tag-order 'targets'
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
-zstyle ':completion:*' rehash true                              # automatically find new executables in path 
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
-zstyle ':completion:*' completer _expand _complete _ignored _approximate
-zstyle ':completion:*' menu select=2
-zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
-zstyle ':completion:*:descriptions' format '%U%F{cyan}%d%f%u'
-
-# Speed up completions
-zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.cache/zcache
+# # Completion.
+# zstyle ':completion:*:*:make:*' tag-order 'targets'
+# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
+# zstyle ':completion:*' rehash true                              # automatically find new executables in path 
+# zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
+# zstyle ':completion:*' completer _expand _complete _ignored _approximate
+# zstyle ':completion:*' menu select=2
+# zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
+# zstyle ':completion:*:descriptions' format '%U%F{cyan}%d%f%u'
+# 
+# # Speed up completions
+# zstyle ':completion:*' accept-exact '*(N)'
+# zstyle ':completion:*' use-cache on
+# zstyle ':completion:*' cache-path ~/.cache/zcache
 
 # automatically load bash completion functions
-autoload -U +X bashcompinit && bashcompinit
+# autoload -U +X bashcompinit && bashcompinit
 
 HISTFILE=~/.zhistory
 HISTSIZE=50000
@@ -138,6 +137,38 @@ export GOPATH=$HOME/coding/go
 export EDITOR=nvim
 
 
+# autoload -Uz compinit 
+# if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+# 	compinit;
+# else
+# 	compinit -C;
+# fi;
 
-eval spaceship_vi_mode_enable # for allowing vi-mode changes to reflect on the shell prompt
-autoload -Uz compinit && compinit -i # Initialize the autocompletion
+# timer=$(($(gdate +%s%N)/1000000)); echo $timer
+
+setopt extendedglob
+if [[ $ZSH_DISABLE_COMPFIX != true ]]; then
+  # If completion insecurities exist, warn the user without enabling completions.
+  if ! compaudit &>/dev/null; then
+    # This function resides in the "lib/compfix.zsh" script sourced above.
+    handle_completion_insecurities
+  # Else, enable and cache completions to the desired file.
+  else
+    if [[ -n "${ZSH_COMPDUMP}"(#qN.mh+24) ]]; then
+      compinit -d "${ZSH_COMPDUMP}"
+      compdump
+    else
+      compinit -C
+    fi
+  fi
+else
+  if [[ -n "${ZSH_COMPDUMP}"(#qN.mh+24) ]]; then
+    compinit -i -d "${ZSH_COMPDUMP}"
+    compdump
+  else
+    compinit -C
+  fi
+fi
+
+
+#zprof
